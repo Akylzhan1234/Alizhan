@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Alizhan!</title>
+    <style>
+        /* Basic Reset */
+        body, h1, h2, h3, p, ul, li, header, section, img {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif; /* Modern sans-serif */
+            color: #333;
+            background-color: #FFF9EE; /* Default cream background for areas between sections */
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px; /* Consistent padding */
+        }
+
+        /* Colors */
+        :root {
+            --primary-orange: #F2592C;
+            --cream-bg: #FFF9EE;
+            --white-text: #FFFFFF;
+            --dark-text: #333333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: var(--primary-orange); /* Background for the hero area */
+            padding: 0; 
+            line-height: 0; /* Removes extra space below img if it's display: inline-block or has line-height inheritance */
+            text-align: center; /* Helps ensure centering, though margin:auto on block is primary */
+        }
+
+        .hero-banner-image {
+            display: block;         /* Allows margin: auto for horizontal centering */
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 100%;
+            height: 685px;     /* Crucial: Image will not exceed parent width & scales down */
+            width: 960px;          /* Image takes its natural width, unless limited by max-width.
+                                     If parent is wider than intrinsic width, image will be
+                                     its natural size and centered due to margin:auto. */
+            height: auto;         /* Maintain aspect ratio */
+            /* Example: If your image has a specific known width like 1280px, and you
+               don't want it to display wider than that even if it's a high-res file,
+               you could add:
+               max-width: 1280px; 
+               (and keep max-width: 100%; as well for smaller screens - browser picks smallest applicable value)
+               But for typical usage, width:auto and max-width:100% is a good combo.
+            */
+        }
+
+        /* Moments Section */
+        .moments {
+            background-color: var(--cream-bg);
+            padding: 20px 0 20px 0; /* Adjusted top padding */
+        }
+
+        .moments h2 {
+            text-align: center;
+            font-size: 2.2em;
+            color: var(--primary-orange);
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+
+        .moments-category {
+            margin-bottom: 35px;
+        }
+
+        .moments-category h3 {
+            font-size: 1.6em;
+            color: var(--dark-text);
+            margin-bottom: 15px;
+            font-weight: bold;
+            padding-left: 20px; /* Align with container padding */
+        }
+
+        .image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 0 20px; /* Align with container padding */
+        }
+
+        .image-gallery img {
+            width: calc(33.333% - 10px); 
+            height: 200px; /* Fixed height for consistency */
+            border-radius: 12px;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease-in-out;
+        }
+        .image-gallery img:hover {
+            transform: scale(1.03);
+        }
+        .image-gallery.cols-2 img { width: calc(50% - 8px); height: 250px; }
+        .image-gallery.cols-1 img { width: calc(60% - 8px); max-width: 350px; height: auto; margin: 0 auto; display: block;}
+
+
+        /* Letter Section */
+        .letter-section {
+            background-color: var(--primary-orange);
+            padding: 50px 20px;
+        }
+
+        .letter-content {
+            background-color: var(--white-text);
+            color: var(--dark-text);
+            padding: 35px;
+            border-radius: 15px;
+            max-width: 700px;
+            margin: 0 auto;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        }
+
+        .letter-content p {
+            margin-bottom: 18px;
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .letter-content .signature {
+            text-align: right;
+            font-weight: bold;
+            font-size: 1.15em;
+            margin-top: 25px;
+        }
+
+        /* Qualities Section */
+        .qualities-section {
+            background-color: var(--primary-orange);
+            padding: 50px 20px;
+            color: var(--white-text);
+        }
+
+        .qualities-title-banner {
+            background-color: var(--cream-bg);
+            color: var(--primary-orange);
+            padding: 15px 25px;
+            text-align: center;
+            border-radius: 12px;
+            max-width: 320px;
+            margin: 0 auto 35px auto;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .qualities-title-banner h2 {
+            font-size: 2.2em;
+            font-weight: bold;
+        }
+
+        .qualities-list {
+            list-style: none;
+            padding-left: 0; 
+            max-width: 650px;
+            margin: 0 auto;
+            columns: 2; 
+            column-gap: 40px;
+        }
+
+        .qualities-list li {
+            margin-bottom: 10px;
+            font-size: 1.15em;
+            position: relative;
+            padding-left: 25px;
+        }
+        .qualities-list li::before {
+            content: "•"; 
+            color: var(--white-text);
+            font-weight: bold;
+            font-size: 1.2em;
+            display: inline-block; 
+            position: absolute;
+            left: 0;
+            top: -1px;
+        }
+
+        /* Bonus Section */
+        .bonus-section {
+            background-color: var(--primary-orange);
+            padding: 70px 20px 50px 20px; /* Top padding for torn effect */
+            text-align: center;
+            position: relative;
+            clip-path: polygon(0 30px, 5% 0, 10% 30px, 15% 0, 20% 30px, 25% 0, 30% 30px, 35% 0, 40% 30px, 45% 0, 50% 30px, 55% 0, 60% 30px, 65% 0, 70% 30px, 75% 0, 80% 30px, 85% 0, 90% 30px, 95% 0, 100% 30px, 100% 100%, 0 100%);
+        }
+
+        .bonus-title-banner {
+            background-color: var(--white-text);
+            padding: 15px 35px;
+            border-radius: 12px;
+            display: inline-block; 
+            margin-bottom: 35px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .bonus-title-banner h2 {
+            font-size: 2.8em;
+            font-weight: bold;
+            color: var(--primary-orange);
+        }
+
+        .qr-code-container {
+            background-color: var(--white-text);
+            padding: 25px; 
+            display: inline-block;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 0 0 8px var(--white-text), 0 4px 15px rgba(0,0,0,0.2);
+            border-radius: 5px; /* Simple rounded corners for the QR container */
+        }
+        /* Simple rough edge for QR container using clip-path */
+        .qr-code-container {
+             clip-path: polygon(
+                2% 6%, 5% 2%, 10% 5%, 15% 1%, 20% 6%, 25% 3%, 30% 7%, 35% 2%, 40% 5%, 45% 0%, 50% 4%, 55% 1%, 60% 6%, 65% 2%, 70% 5%, 75% 1%, 80% 4%, 85% 0%, 90% 5%, 95% 2%, 98% 7%,
+                96% 95%, 99% 98%, 94% 100%, 90% 96%, 85% 100%, 80% 95%, 75% 99%, 70% 96%, 65% 100%, 60% 95%, 55% 99%, 50% 96%, 45% 100%, 40% 97%, 35% 100%, 30% 96%, 25% 99%, 20% 95%, 15% 100%, 10% 96%, 5% 99%, 1% 95%
+            );
+            padding: 30px; /* Increased padding due to clip-path */
+        }
+
+         .qr-code-container img {
+            display: block;
+            max-width: 150px; 
+            height: auto;
+         }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .image-gallery img, .image-gallery.cols-2 img {
+                width: calc(50% - 8px); 
+                height: 180px;
+            }
+            .image-gallery.cols-1 img { width: calc(70% - 8px); }
+
+            .qualities-list {
+                columns: 1; 
+            }
+            .moments h2, .qualities-title-banner h2, .bonus-title-banner h2 {
+                font-size: 2em;
+            }
+             .bonus-title-banner h2 { font-size: 2.4em; }
+        }
+
+        @media (max-width: 480px) {
+            .moments h2, .qualities-title-banner h2 { font-size: 1.8em; }
+            .bonus-title-banner h2 { font-size: 2em; }
+            .moments-category h3 { font-size: 1.4em; }
+
+            .image-gallery img, .image-gallery.cols-2 img, .image-gallery.cols-1 img {
+                width: 100%; 
+                height: 220px;
+            }
+            .image-gallery.cols-1 img { height: auto; max-width: 90%;}
+
+            .letter-content { padding: 25px; }
+            .letter-content p { font-size: 1em; }
+
+            .qualities-list li { font-size: 1.05em; }
+            .qr-code-container { padding: 20px; }
+            .qr-code-container img { max-width: 120px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="hero.jpg" alt="Happy Birthday Alizhan!" class="hero-banner-image">
+    </header>
+
+    <!-- Our Little Moments Section -->
+    <section class="moments">
+        <div class="container">
+            <h2>OUR LITTLE MOMENTS 🎂</h2>
+
+            <div class="moments-category">
+                <h3>When you leave(</h3>
+                <div class="image-gallery cols-2">
+                    <img src="leave1.jpeg" alt="Moment 1 when leaving">
+                    <img src="leave2.jpeg" alt="Moment 2 when leaving">
+                    <img src="leave3.jpeg" alt="Moment 1 when leaving">
+                    <img src="leave4.jpeg" alt="Moment 2 when leaving">
+                </div>
+            </div>
+
+            <div class="moments-category">
+                <h3>Childhood</h3>
+                <div class="image-gallery"> 
+                    <img src="c1.jpeg" alt="Childhood photo 1">
+                    <img src="c2.jpeg" alt="Childhood photo 2">
+                    <img src="c3.jpeg" alt="Childhood photo 3">
+                </div>
+            </div>
+
+            <div class="moments-category">
+                <h3>GYM</h3>
+                <div class="image-gallery cols-1">
+                    <img src="gym.PNG" alt="GYM photo">
+                </div>
+            </div>
+
+            <div class="moments-category">
+                <h3>Turkey</h3>
+                <div class="image-gallery"> 
+                    <img src="t1.jpeg" alt="Turkey photo 1">
+                    <img src="t2.jpeg" alt="Turkey photo 2">
+                    <img src="t3.jpeg" alt="Turkey photo 3">
+                </div>
+            </div>
+
+            <div class="moments-category">
+                <h3>TRIP TO ASTANA</h3>
+                <div class="image-gallery"> 
+                    <img src="a1.JPG" alt="Astana trip photo 1">
+                    <img src="a2.JPG" alt="Astana trip photo 2">
+                    <img src="a3.JPG" alt="Astana trip photo 3">
+                    <img src="a4.JPEG" alt="Astana trip photo 3">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Letter Section -->
+    <section class="letter-section">
+        <div class="container">
+            <div class="letter-content">
+                <p><strong>Dear Alizhan,</strong></p>
+                <p>I am very grateful to have such an amazing brother. You are kind, passionate, loving, motivated, ambitious, and handsome. You have helped me a lot during my hardships, and you've played a big role in my growth and in getting me to where I am today.</p>
+                <p>On your 29th birthday, I wish you all the very best. Especially now, I've come to truly understand the importance of health, so I wish you and our loved ones great health.</p>
+                <p>May your ambition continue to grow, and may you always aim higher. Be happy!</p>
+                <p class="signature">Akylzhan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Qualities Section -->
+    <section class="qualities-section">
+        <div class="container">
+            <div class="qualities-title-banner">
+                <h2>You are ...</h2>
+            </div>
+            <ul class="qualities-list">
+                <li>Honest</li><li>Kind</li><li>Compassionate</li><li>Empathetic</li><li>Generous</li>
+                <li>Forgiving</li><li>Patient</li><li>Gentle</li><li>Supportive</li><li>Considerate</li>
+                <li>Loyal</li><li>Trustworthy</li><li>Responsible</li><li>Accountable</li><li>Fair</li>
+                <li>Brave</li><li>Humble</li><li>Sincere</li><li>Respectful</li><li>Friendly</li>
+                <li>Charismatic</li><li>Cooperative</li><li>Humorous</li><li>Open-minded</li><li>Diplomatic</li>
+                <li>Tactful</li><li>Polite</li><li>Inclusive</li><li>Resilient</li><li>Confident</li>
+                <li>Optimistic</li><li>Grateful</li><li>Tolerant</li><li>Content</li><li>Peaceful</li>
+                <li>Diligent</li><li>Persevering</li><li>Disciplined</li><li>Motivated</li><li>Determined</li>
+                <li>Reliable</li><li>Punctual</li><li>Industrious</li><li>Focused</li><li>Professional</li>
+                <li>Curious</li><li>Imaginative</li><li>Creative</li><li>Innovative</li><li>Wise</li>
+                <li>Insightful</li><li>Thoughtful</li><li>Intelligent</li><li>Intuitive</li><li>Analytical</li>
+                <li>Faithful</li><li>Hopeful</li><li>Reverent</li><li>Devoted</li><li>Graceful</li>
+                <li>Merciful</li><li>Benevolent</li><li>Mindful</li><li>Self-aware</li><li>Visionary</li>
+                <li>Inspiring</li><li>Empowering</li><li>Adaptable</li><li>Strategic</li><li>Reflective</li>
+                <li>Eager</li><li>Flexible</li><li>Encouraging</li><li>Energetic</li><li>Enthusiastic</li>
+                <li>Genuine</li><li>Warm</li><li>Balanced</li><li>Loving</li><li>Calm</li><li>Modest</li>
+                <li>Just</li><li>Noble</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Bonus Section -->
+    <section class="bonus-section">
+        <div class="container">
+            <div class="bonus-title-banner">
+                <h2>Bonus</h2>
+            </div><br>
+            <div class="qr-code-container">
+                <img src="qr.png" alt="QR Code">
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
